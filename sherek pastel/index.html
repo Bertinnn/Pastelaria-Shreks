@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Slide de Imagem de Fundo - Banner</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .shadow {
+            width: 100%;
+            height: 47rem; /* Defina a altura desejada para o seu banner */
+            position: absolute;
+            box-shadow: inset 0px 0px 200px 20px #000000;
+            z-index: 999;
+        }
+
+        .slider {
+            width: 100%;
+            height: 47rem; /* Defina a altura desejada para o seu banner */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            transition: opacity 1s;
+        }
+
+        .bullets {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .bullet {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #333;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .bullet.active {
+            background: #36b604; /* Cor da bolinha ativa */
+        }
+    </style>
+</head>
+<body>
+    <div class="shadow"></div>
+    <div class="slider">
+        <div class="slide" style="background-image: url('img/shrek (1).jfif');"></div>
+        <div class="slide" style="background-image: url('img/shrek (2).jfif');"></div>
+        <div class="slide" style="background-image: url('img/shrek (3).jfif');"></div>
+        <div class="slide" style="background-image: url('img/shrek (4).jfif');"></div>
+        <div class="slide" style="background-image: url('img/shrek (5).jfif');"></div>
+    </div>
+
+    <div class="bullets">
+        <div class="bullet active"></div>
+        <div class="bullet"></div>
+        <div class="bullet"></div>
+        <div class="bullet"></div>
+        <div class="bullet"></div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const bullets = document.querySelectorAll('.bullet');
+        let currentSlide = 0;
+
+        function showSlide(slideIndex) {
+            slides.forEach(slide => {
+                slide.style.opacity = 0;
+            });
+            bullets.forEach(bullet => {
+                bullet.classList.remove('active');
+            });
+            currentSlide = slideIndex;
+            slides[currentSlide].style.opacity = 1;
+            bullets[currentSlide].classList.add('active');
+        }
+
+        bullets.forEach((bullet, index) => {
+            bullet.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+    </script>
+</body>
+</html>
